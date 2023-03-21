@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html> <head>
- <meta charset="utf-8">
- <title>{% block title %}Dashboard{% endblock title %}</title>
+   <meta charset="utf-8">
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+   
+
+   <style>
+      #country_dropdown .Select-control {
+         background-color: red !important;
+         color:white;
+       }
+       
+     #country_dropdown .Select-menu-outer {
+         background-color: rgb(25, 25, 25);
+         color: white;
+     }
+     
+     #country_dropdown .Select-value-label {
+         color: rgb(37, 224, 37) !important;
+     }
+   </style>
+
+   <title>{% block title %}Dashboard{% endblock title %}</title>
 </head> 
 
 <body>
- <div class="container">
-    {% block content %}
-    {% endblock content %}
- </div>
+   <div class="container">
+      {% block content %}
+      {% endblock content %}
+   </div>
 </body>
 </html>

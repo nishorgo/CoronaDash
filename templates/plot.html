@@ -1,9 +1,8 @@
 {% extends '_base.html' %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-md-12">
-      {{ plot_div|safe }}
-    </div>
+  {% load plotly_dash%}
+  <div class = {% plotly_class name='DailyCases' %} card "style=height: 50%; width: 50%;">
+    {% plotly_app name='DailyCases' ratio=0.4 %}
   </div>
 {% endblock %}
