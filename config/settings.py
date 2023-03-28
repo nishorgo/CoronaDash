@@ -129,6 +129,8 @@ PLOTLY_COMPONENTS = [
     'dash_renderer',
     'dpd_components',
     'dash_table',
+    'dash_bootstrap_components',
+    
 ]
 
 
