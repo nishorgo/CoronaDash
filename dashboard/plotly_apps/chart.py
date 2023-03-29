@@ -4,11 +4,8 @@ import pandas as pd
 from dash import html, dcc, dash_table
 from dash.dependencies import Input, Output
 
-from .app import app
+from .app import app, daily_case
 
-df = pd.read_csv('owid-covid-data.csv')
-daily_case = df[['iso_code', 'continent', 'date', 'location', 'new_cases', 'new_cases_smoothed']].copy()
-country_list = ['Bangladesh', 'India', 'China', 'United States']
 
 country_list = pd.read_csv('country_list.csv')
 country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
