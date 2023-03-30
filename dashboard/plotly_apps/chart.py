@@ -11,13 +11,13 @@ country_list = pd.read_csv('country_list.csv')
 country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
 
 chart_layout = html.Div([
+    dcc.Graph(id='fig-chart', figure={}),
+    
     dcc.Dropdown(id='country-dropdown',
                 options=country_options,
                 multi=True,
                 value=['Bangladesh', 'India', 'China', 'United States'],
-                style={'width': "50%"}),
-
-    dcc.Graph(id='fig-chart', figure={})
+                placeholder='Select Country'),
 ])
 
 @app.callback(

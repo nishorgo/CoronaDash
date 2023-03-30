@@ -23,18 +23,26 @@ fig_table = dash_table.DataTable(id='my_table', columns=[{'name': col, 'id': col
 app_tabs = html.Div([
         dbc.Tabs(
         [
-            dbc.Tab(label="Chart", tab_id='tab-chart', labelClassName="text-success font-weight-bold", activeLabelClassName="text-danger"),
-            dbc.Tab(label="Map", tab_id='tab-map', labelClassName="text-success font-weight-bold", activeLabelClassName="text-danger"),
+            dbc.Tab(label="Chart", tab_id='tab-chart', labelClassName="font-weight-bold", activeLabelClassName="text-success"),
+            dbc.Tab(label="Map", tab_id='tab-map', labelClassName="font-weight-bold", activeLabelClassName="text-success"),
             #dcc.Tab(label="Table", children=[dcc.Graph(figure=fig_table)])
         ], id='tab-parent', active_tab='tab-chart'
     )
 ])
 
-app.layout = dbc.Container([
-    html.H1('Daily Cases', style={'textAlign': 'center', 'color': colors['background']}),
-    app_tabs,
-    html.Div(id='tab-content', children=[])
-])
+app.layout = html.Div(className='w-75 mb-3', children=
+    [
+        dbc.Card(
+            dbc.CardBody(
+                [
+                    html.H1('Daily Cases', style={'textAlign': 'left'}),
+                    app_tabs,
+                    html.Div(id='tab-content', children=[]),
+                ]
+            ),
+        )
+    ]
+)
 
 @app.callback(
     Output(component_id='tab-content', component_property='children'),

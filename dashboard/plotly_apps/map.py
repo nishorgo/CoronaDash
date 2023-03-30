@@ -19,8 +19,6 @@ fig_map = px.choropleth(
                     labels={'new_cases_smoothed': 'daily cases'},
                     hover_data=['new_cases_smoothed', 'date'],
                     range_color=(0, 600000),
-                    height=600,
-                    width=1000,
                     template='plotly_white'
                 )
 
