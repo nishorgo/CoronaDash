@@ -14,7 +14,7 @@ fig_map = px.choropleth(
                     locations="iso_code", 
                     color="new_cases_smoothed", 
                     hover_name="location", 
-                    animation_frame="date", 
+                    #animation_frame="date", 
                     color_continuous_scale=cc_scale,
                     labels={'new_cases_smoothed': 'daily cases'},
                     hover_data=['new_cases_smoothed', 'date'],
@@ -25,4 +25,5 @@ fig_map = px.choropleth(
 
 map_layout = html.Div([
     dcc.Graph(id='fig-map', figure=fig_map)
+    
 ])

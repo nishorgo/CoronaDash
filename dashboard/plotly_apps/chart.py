@@ -1,7 +1,7 @@
 import plotly.express as px
 import pandas as pd
 
-from dash import html, dcc, dash_table
+from dash import html, dcc
 from dash.dependencies import Input, Output
 
 from .app import app, daily_case
@@ -37,4 +37,5 @@ def update_chart(country_list):
                 hover_data={'location':False, 'date':True, 'new_cases_smoothed':True},
                 template='plotly_white'
             )
+    
     return fig_chart
