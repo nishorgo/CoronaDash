@@ -17,7 +17,7 @@ df.set_index('id', inplace=True, drop=False)
 app = DjangoDash('Cases', external_stylesheets=[dbc.themes.LUX])
 
 selected_date = '2021-01-01'
-df = df[df['date'] == selected_date]
+initial_date = df[df['date'] == selected_date]
 
 
 app.layout = html.Div(className='w-75 mb-3', children=
@@ -41,10 +41,10 @@ app.layout = html.Div(className='w-75 mb-3', children=
                         dash_table.DataTable(
                             id='casetable-row-ids',
                             columns=[
-                                {'name': i, 'id': i, 'deletable': True} for i in df.columns
+                                {'name': i, 'id': i, 'deletable': True} for i in initial_date.columns
                                 if i != 'id'
                             ],
-                            data=df.to_dict('records'),
+                            data=initial_date.to_dict('records'),
                             editable=False,
                             filter_action="native",
                             sort_action="native",
@@ -76,14 +76,14 @@ app.layout = html.Div(className='w-75 mb-3', children=
 
 
 @app.callback(
-    #Output('casetable-row-ids', 'data'),
+    Output('casetable-row-ids', 'data'),
     Output('casetable-row-ids-container', 'children'),
-    #Input('date-picker', 'date'),
+    Input('date-picker', 'date'),
     Input('casetable-row-ids', 'derived_virtual_row_ids'),
     Input('casetable-row-ids', 'selected_row_ids'),
     Input('casetable-row-ids', 'active_cell'))
 
-def update_graphs(row_ids, selected_row_ids, active_cell):
+def update_graphs(selected_date, row_ids, selected_row_ids, active_cell):
     # When the table is first rendered, `derived_virtual_data` and
     # `derived_virtual_selected_rows` will be `None`. This is due to an
     # idiosyncrasy in Dash (unsupplied properties are always None and Dash
@@ -94,17 +94,18 @@ def update_graphs(row_ids, selected_row_ids, active_cell):
     # `derived_virtual_data=df.to_rows('dict')` when you initialize
     # the component.
 
-    # df = df[df['date'] == selected_date]
-    # table = df.to_dict('records')
+    dff = df[df['date'] == selected_date]
+    table = dff.to_dict('records')
 
     selected_id_set = set(selected_row_ids or [])
 
     if row_ids is None:
-        dff = df
+        dff = dff
         # pandas Series works enough like a list for this to be OK
-        row_ids = df['id']
+        row_ids = dff['id']
     else:
-        dff = df.loc[row_ids]
+        valid_row_ids = dff.index.intersection(row_ids)
+        dff = dff.loc[valid_row_ids]
 
     active_row_id = active_cell['row_id'] if active_cell else None
 
@@ -142,4 +143,4 @@ def update_graphs(row_ids, selected_row_ids, active_cell):
         for column in ['new_cases', 'new_cases_per_million', 'total_cases', 'total_cases_per_million'] if column in dff
     ]
 
-    return column_graphs
+    return table, column_graphs
