@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 from datetime import date
 
-app = DjangoDash('Cases', external_stylesheets=[dbc.themes.LUX])
+app = DjangoDash('TestCases', external_stylesheets=[dbc.themes.LUX])
 
 df = pd.read_csv('owid-covid-data.csv')
 df = df[['location', 'new_cases', 'new_cases_per_million', 'total_cases', 'total_cases_per_million', 'continent', 'date']].copy()
