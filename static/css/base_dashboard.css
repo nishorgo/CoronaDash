@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&family=Varela+Round&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+}
+
+li, a, button {
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: black;
+}
+
+.logo {
+    font-family: 'Raleway', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.logo:hover {
+    color: #02e7d4;
+}
+
+.nav__links {
+    list-style: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #02e7d4;
+}
+
+button {
+    padding: 9px 25px;
+    border: none;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: #02e7d4;
+}
+
+.side-menu {
+    margin-top: 70px;
+    padding-top: 40px;
+    align-items: center;
+    position: fixed;
+    background: black;
+    width: 20vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.side-menu ul {
+    list-style: none;
+}
+
+.side-menu p {
+    font-size: 14px;
+    padding: 10px 40px;
+    color: white;
+}
+
+.side-menu li a{
+    font-size: 20px;
+    font-weight: 600;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease 0s;
+}
+
+.side-menu li a:hover {
+    color: #02e7d4;
+}
+
+.container {
+    position: absolute;
+    right: 0;
+    width: 75vw;
+    margin-top: 70px;
+}
+
+.heading {
+    width: 75%;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+.dash-table {
+    align-items: center;
+}

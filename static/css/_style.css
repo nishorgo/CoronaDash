@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&family=Varela+Round&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    background-color: whitesmoke;
+}
+
+li, a, button {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+}
+
+.logo {
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.logo:hover {
+    color: #009689;
+}
+
+.nav__links {
+    list-style: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #009689;
+}
+
+button {
+    padding: 9px 25px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: #009689;
+}

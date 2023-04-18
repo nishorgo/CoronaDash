@@ -15,6 +15,9 @@ django-redis = "*"
 channels-redis = "*"
 dash-renderer = "*"
 dash-bootstrap-components = "*"
+django-bootstrap4 = "*"
+dpd-static-support = "*"
+whitenoise = "*"
 
 [dev-packages]
 

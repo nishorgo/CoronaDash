@@ -4,8 +4,7 @@ import pandas as pd
 from dash import html, dcc
 from dash.dependencies import Input, Output
 
-from .app import app, daily_case
-
+from .daily_cases_app import app, daily_case
 
 country_list = pd.read_csv('country_list.csv')
 country_options = [{'label': i, 'value': i,} for i in country_list['Country']]

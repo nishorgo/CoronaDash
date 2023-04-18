@@ -1,13 +1,30 @@
-{% extends '_base.html' %}
+{% extends 'dashboard/base_dashboard.html' %}
+{% load plotly_dash %}
+{% load static %}
 
-{% block content %}
-  {% load plotly_dash%}
+{% block graph %} 
+  <div style="width: 80%; padding: 50 50; margin: auto; font-family: 'Raleway', sans-serif;">
+    <h1> Confirmed Cases Statistics of Covid-19 </h1>
+  </div>
 
-  <div class = {% plotly_class name='Cases' %} card "style=height: 100%; width: 100%;">
-    {% plotly_app name='Cases' ratio=1.1 %}
+  <div class = {% plotly_class name='Cases' %} card "margin-top: 70px">
+    {%plotly_app name='Cases' ratio=1.78%}
   </div>
   
-  <div class = {% plotly_class name='DailyCases' %} card "style=height: 100%; width: 50%;">
-    {% plotly_app name='DailyCases' ratio=0.4 %}
+  <div class = {% plotly_class name='DailyCases' %} card "style=height: 100%; width: 100%;">
+    {% plotly_app name='DailyCases' ratio=1.78 %}
   </div>
-{% endblock %}
+
+  <div class = {% plotly_class name='DailyPerMillion' %} card "style=height: 100%; width: 100%;">
+    {% plotly_app name='DailyPerMillion' ratio=1.78 %}
+  </div>
+
+  <div class = {% plotly_class name='TotalCases' %} card "style=height: 100%; width: 100%;">
+    {% plotly_app name='TotalCases' ratio=1.78 %}
+  </div>
+
+  <div class = {% plotly_class name='TotalPerMillion' %} card "style=height: 100%; width: 100%;">
+    {% plotly_app name='TotalPerMillion' ratio=1.78 %}
+  </div>
+  
+{% endblock graph %}

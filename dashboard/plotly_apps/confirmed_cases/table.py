@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 from datetime import date
 
-app = DjangoDash('Cases', external_stylesheets=[dbc.themes.LUX])
+app = DjangoDash('Cases', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = pd.read_csv('owid-covid-data.csv')
 df = df[['location', 'new_cases', 'new_cases_per_million', 'total_cases', 'total_cases_per_million', 'continent', 'date']].copy()
@@ -14,62 +14,67 @@ df = df[['location', 'new_cases', 'new_cases_per_million', 'total_cases', 'total
 PAGE_SIZE = 5
 
 
-app.layout = html.Div(className='w-75 mb-3', children=
+app.layout = html.Div(children=
     [
-        dbc.Card(
-            [
-                dbc.CardBody(
-                    dcc.DatePickerSingle(
-                        id='date-picker',
-                        min_date_allowed=date(2020, 1, 1),
-                        max_date_allowed=date(2023, 3, 1),
-                        initial_visible_month=date(2021, 1, 1),
-                        month_format='MMM D, YYYY',
-                        display_format='MMM D, YYYY',
-                        date=date(2021, 1, 1),
-                    ),
-                ),
-
-                dbc.CardBody(
+        html.H3('Records of daily confirmed cases', style={'textAlign': 'center'}),
+        html.Div(className='d-flex justify-content-center', children=
+            [   
+                dbc.Card(
                     [
-                        html.Div(
-                            dash_table.DataTable(
-                                id='table-paging-with-graph',
-                                columns=[
-                                    {"name": i, "id": i} for i in sorted(df.columns)
-                                ],
-                                page_current=0,
-                                page_size=20,
-                                page_action='custom',
-
-                                filter_action='custom',
-                                filter_query='',
-
-                                sort_action='custom',
-                                sort_mode='multi',
-                                sort_by=[]
+                        dbc.CardBody(
+                            dcc.DatePickerSingle(
+                                id='date-picker',
+                                min_date_allowed=date(2020, 1, 1),
+                                max_date_allowed=date(2023, 3, 1),
+                                initial_visible_month=date(2021, 1, 1),
+                                month_format='MMM D, YYYY',
+                                display_format='MMM D, YYYY',
+                                date=date(2021, 1, 1),
                             ),
-                            style={'height': 750,},
-                            className='six columns'
                         ),
-                    ]
-                ),
 
-                dbc.CardBody(
-                    [
-                        html.Div(
-                            id='table-paging-with-graph-container',
-                            className="five columns"
+                        dbc.CardBody(
+                            [
+                                html.Div(
+                                    dash_table.DataTable(
+                                        id='table-paging-with-graph',
+                                        columns=[
+                                            {"name": i, "id": i} for i in sorted(df.columns) if i != 'date'
+                                        ],
+                                        page_current=0,
+                                        page_size=20,
+                                        page_action='custom',
+
+                                        filter_action='custom',
+                                        filter_query='',
+
+                                        sort_action='custom',
+                                        sort_mode='multi',
+                                        sort_by=[],
+                                    ),
+                                    className='six columns'
+                                ),
+                            ]
+                        ),
+
+                        dbc.CardBody(
+                            [
+                                html.Div(
+                                    id='table-paging-with-graph-container',
+                                    className="five columns"
+                                )
+                            ]
                         )
-                    ]
-                )
 
-            ]
-            
-        ),
-        dcc.Store(id='filtered-by-date'),
+                    ], color="dark", outline=True
+                    
+                ),
+            ],
+        )
     ]
 )
+
+    
 
 operators = [['ge ', '>='],
              ['le ', '<='],
@@ -160,7 +165,7 @@ def update_graph(rows):
                             "x": dff["location"],
                             "y": dff[column] if column in dff else [],
                             "type": "bar",
-                            "marker": {"color": "#0074D9"},
+                            "marker": {"color": "#02e7d4"},
                         }
                     ],
                     "layout": {

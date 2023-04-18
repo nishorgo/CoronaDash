@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title> {% block title %} Dashboard {% endblock title %} </title>
+   
+   <link rel="stylesheet" href="{% static 'css/base_dashboard.css' %}">
+   
+   
+
+</head>
+<body>
+   <header>
+      <a class="logo" href="#">COVIDCAST</a>
+      <nav id="navbar">
+         <ul class="nav__links">
+            <li><a href="#">DASHBOARD</a></li>
+            <li><a href="#">DETECT</a></li>
+            <li><a href="#">ABOUT</a></li>
+         </ul>
+        </nav>
+      <a class="login-button" href="#"><button>Login</button></a>
+   </header>
+
+   <div class="side-menu">
+        <ul>
+            <li> <b><p>DASHBOARD MENU</p></b> </li>
+            <li> <a href="#">CONFIRMED CASES</a> </li>
+            <li> <a href="#">DEATHS</a> </li>
+            <li> <a href="#">TESTS</a> </li>
+            <li> <a href="#">HOSPITALIZATIONS</a> </li>
+            <li> <a href="#">VACCINATIONS</a> </li>
+            <li> <a href="#">MORTALITY RISK</a> </li>
+        </ul>
+    </div>
+
+   <div class="container">
+
+        {% block graph %} {% endblock graph %}
+   </div>
+
+</body>
+</html>

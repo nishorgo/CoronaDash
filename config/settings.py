@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+    'bootstrap4',
     'config',
     'dashboard',
     'channels',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_plotly_dash.middleware.BaseMiddleware',
+    'django_plotly_dash.middleware.ExternalRedirectionMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -121,6 +124,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django_plotly_dash.finders.DashAssetFinder',
     'django_plotly_dash.finders.DashComponentFinder',
+    'django_plotly_dash.finders.DashAppDirectoryFinder',
 ]
 
 PLOTLY_COMPONENTS = [
@@ -128,6 +132,7 @@ PLOTLY_COMPONENTS = [
     'dash_html_components',
     'dash_renderer',
     'dpd_components',
+    'dpd_static_support',
     'dash_table',
     'dash_bootstrap_components',
     
@@ -150,11 +155,11 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATICFILES_LOCATION = 'static'
+
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static'
+STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 STATICFILES_DIRS = [
-    str(BASE_DIR.joinpath('config/static')),
+    str(BASE_DIR.joinpath('static')),
 ]
 
 # Default primary key field type
