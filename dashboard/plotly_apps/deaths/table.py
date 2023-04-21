@@ -8,7 +8,7 @@ from datetime import date
 app = DjangoDash('Deaths', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = pd.read_csv('owid-covid-data.csv')
-df = df[['location', 'new_deaths', 'new_deaths_per_million', 'total_deaths', 'total_deaths_per_million', 'continent', 'date']].copy()
+df = df[['location', 'new_deaths', 'new_deaths_per_million', 'total_deaths', 'total_deaths_per_million', 'date']].copy()
 
 
 PAGE_SIZE = 5

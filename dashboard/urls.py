@@ -9,7 +9,7 @@ from .plotly_apps.tests import daily_tests, daily_tests_per_thousand, total_test
 from .plotly_apps.hospitalizations import hosp_patients, icu_patients, hosp_patients_per_million, icu_patients_per_million, weekly_hosp_admissions, weekly_icu_admissions, table
 
 urlpatterns = [
-    path('', views.confirmed_cases, name='confirmed-cases'),
+    path('confirmed-cases/', views.confirmed_cases, name='confirmed-cases'),
     path('deaths/', views.deaths, name='deaths'),
     path('vaccinations/', views.vaccinations, name='vaccinations'),
     path('vaccinated-people/', views.vaccinated_people, name='vaccinated-people'),

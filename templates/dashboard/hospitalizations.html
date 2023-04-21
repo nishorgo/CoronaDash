@@ -1,4 +1,4 @@
-{% extends 'dashboard/base_dashboard.html' %}
+{% extends '_base.html' %}
 {% load plotly_dash %}
 {% load static %}
 
@@ -7,8 +7,8 @@
     <h1 class="display-2 my-5 py-3">Statistics of Hospital and ICU Admissions</h1>
   </div>
 
-  <div class = {% plotly_class name='Vaccinations' %} style="width: 100%;">
-    {%plotly_app name='Vaccinations' ratio=1.5%}
+  <div class = {% plotly_class name='Hospitalizations' %} style="width: 100%;">
+    {%plotly_app name='Hospitalizations' ratio=1.5%}
   </div>
   
   <div class = {% plotly_class name='HospPatients' %} >
