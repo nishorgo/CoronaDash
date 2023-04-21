@@ -17,3 +17,7 @@ def vaccinations(request):
 
 def vaccinated_people(request):
     return render(request, 'dashboard/vaccinated_people.html')
+
+
+def tests(request):
+    return render(request, 'dashboard/tests.html')

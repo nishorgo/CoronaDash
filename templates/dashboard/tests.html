@@ -1,0 +1,38 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load plotly_dash %}
+{% load static %}
+
+{% block graph %} 
+  <div>
+    <h1 class="display-2 my-5 py-3">Statistics of Vaccine Distributions</h1>
+  </div>
+
+  <div class = {% plotly_class name='Tests' %} style="width: 100%;">
+    {%plotly_app name='Tests' ratio=1.5%}
+  </div>
+  
+  <div class = {% plotly_class name='DailyTests' %} >
+    {% plotly_app name='DailyTests' ratio=0.4 %}
+  </div>
+ 
+  <div class = {% plotly_class name='DailyTestsPerThousand' %}>
+    {% plotly_app name='DailyTestsPerThousand' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='TotalTests' %}>
+    {% plotly_app name='TotalTests' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='TotalTestsPerThousand' %}>
+    {% plotly_app name='TotalTestsPerThousand' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='PositiveRate' %}>
+    {% plotly_app name='PositiveRate' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='TestsPerCase' %}>
+    {% plotly_app name='TestsPerCase' ratio=0.4 %}
+  </div>
+  
+{% endblock graph %}
