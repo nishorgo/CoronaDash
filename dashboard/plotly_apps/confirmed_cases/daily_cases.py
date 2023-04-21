@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc, dash_table
 from dash.dependencies import Input, Output
 
-from .daily_cases_app import app, daily_case
+from .daily_cases_app import app
 from .daily_cases_chart import chart_layout
 from .daily_cases_map import map_layout
 

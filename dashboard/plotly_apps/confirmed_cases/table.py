@@ -16,7 +16,7 @@ PAGE_SIZE = 5
 
 app.layout = html.Div(children=
     [
-        html.H3('Records of daily confirmed cases', style={'textAlign': 'center'}),
+        html.H1('Records of daily confirmed cases',),
         html.Div(className='d-flex justify-content-center', children=
             [   
                 dbc.Card(

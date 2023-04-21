@@ -1,0 +1,30 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load plotly_dash %}
+{% load static %}
+
+{% block graph %} 
+  <div>
+    <h1 class="display-2 my-5 py-4">Confirmed Cases Statistics of Covid-19</h1>
+  </div>
+
+  <div class = {% plotly_class name='Cases' %}>
+    {%plotly_app name='Cases' ratio=1.5%}
+  </div>
+  
+  <div class = {% plotly_class name='DailyCases' %} >
+    {% plotly_app name='DailyCases' ratio=0.5 %}
+  </div>
+
+  <div class = {% plotly_class name='DailyPerMillion' %}>
+    {% plotly_app name='DailyPerMillion' ratio=0.5 %}
+  </div>
+
+  <div class = {% plotly_class name='TotalCases' %}>
+    {% plotly_app name='TotalCases' ratio=0.5 %}
+  </div>
+
+  <div class = {% plotly_class name='TotalPerMillion' %}>
+    {% plotly_app name='TotalPerMillion' ratio=0.5 %}
+  </div>
+  
+{% endblock graph %}

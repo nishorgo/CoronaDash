@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 
 import pandas as pd
 
-app = DjangoDash('DailyCases', external_stylesheets=[dbc.themes.LUX])
+app = DjangoDash('DailyCases', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 df = pd.read_csv('owid-covid-data.csv')
 daily_case = df[['iso_code', 'continent', 'date', 'location', 'new_cases', 'new_cases_smoothed']].copy()

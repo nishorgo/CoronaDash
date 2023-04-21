@@ -1,0 +1,38 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load plotly_dash %}
+{% load static %}
+
+{% block graph %} 
+  <div>
+    <h1 class="display-2 my-5 py-3">Statistics of Vaccinated People</h1>
+  </div>
+
+  <div class = {% plotly_class name='VaccinatedPeople' %} >
+    {%plotly_app name='VaccinatedPeople' ratio=1.5%}
+  </div>
+  
+  <div class = {% plotly_class name='DailyPeopleVaccinated' %} >
+    {% plotly_app name='DailyPeopleVaccinated' ratio=0.4 %}
+  </div>
+ 
+  <div class = {% plotly_class name='DailyPeopleVaccinatedPerHundred' %}>
+    {% plotly_app name='DailyPeopleVaccinatedPerHundred' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='PeopleVaccinated' %}>
+    {% plotly_app name='PeopleVaccinated' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='PeopleVaccinatedPerHundred' %}>
+    {% plotly_app name='PeopleVaccinatedPerHundred' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='PeopleFullyVaccinated' %}>
+    {% plotly_app name='PeopleFullyVaccinated' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='PeopleFullyVaccinatedPerHundred' %}>
+    {% plotly_app name='PeopleFullyVaccinatedPerHundred' ratio=0.4 %}
+  </div>
+  
+{% endblock graph %}

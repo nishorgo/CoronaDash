@@ -13,7 +13,7 @@ fig_map = px.choropleth(
                     hover_name="location", 
                     animation_frame="date", 
                     color_continuous_scale='YlGn',
-                    labels={'total_cases': 'total cases'},
+                    labels={'total_cases': ''},
                     hover_data=['total_cases', 'date'],
                     template='plotly_white'
                 )
