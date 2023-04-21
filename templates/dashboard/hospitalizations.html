@@ -1,0 +1,38 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load plotly_dash %}
+{% load static %}
+
+{% block graph %} 
+  <div>
+    <h1 class="display-2 my-5 py-3">Statistics of Hospital and ICU Admissions</h1>
+  </div>
+
+  <div class = {% plotly_class name='Vaccinations' %} style="width: 100%;">
+    {%plotly_app name='Vaccinations' ratio=1.5%}
+  </div>
+  
+  <div class = {% plotly_class name='HospPatients' %} >
+    {% plotly_app name='HospPatients' ratio=0.4 %}
+  </div>
+ 
+  <div class = {% plotly_class name='HospPatientsPerMillion' %}>
+    {% plotly_app name='HospPatientsPerMillion' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='WeeklyHospAdmissions' %}>
+    {% plotly_app name='WeeklyHospAdmissions' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='ICUPatients' %}>
+    {% plotly_app name='ICUPatients' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='ICUPatientsPerMillion' %}>
+    {% plotly_app name='ICUPatientsPerMillion' ratio=0.4 %}
+  </div>
+
+  <div class = {% plotly_class name='WeeklyICUAdmissions' %}>
+    {% plotly_app name='WeeklyICUAdmissions' ratio=0.4 %}
+  </div>
+  
+{% endblock graph %}
