@@ -23,7 +23,7 @@
    <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top px-5">
          <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1 fs-2 fw-bolder" href="#">COVIDCAST</a>
+            <a class="navbar-brand mb-0 h1 fs-2 fw-bolder" href="{% url 'home' %}">COVIDCAST</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
              </button>
@@ -50,14 +50,18 @@
                  </li>
                </ul>
              </div>
-             <button class="btn btn-outline-light" type="button" style=" --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;"> LOGIN </button>
+            {% if user.is_authenticated %}
+            <a class="btn btn-outline-light" href="{% url 'logout' %}" role="button" style=" --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;"> LOGOUT </a>
+            {% else %}
+              <a class="btn btn-outline-light" href="{% url 'login' %}" role="button" style=" --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;"> LOGIN </a>
+            {% endif %}
          </div>
       </nav>
    </header>
 
    <div class="mx-5 px-5">
 
-        {% block graph %} {% endblock graph %}
+        {% block content %} {% endblock content %}
    </div>
 
 </body>

@@ -2,7 +2,7 @@
 {% load plotly_dash %}
 {% load static %}
 
-{% block graph %} 
+{% block content %} 
   <div>
     <h1 class="display-2 my-5 py-4">Confirmed Cases Statistics of Covid-19</h1>
   </div>
@@ -27,4 +27,4 @@
     {% plotly_app name='TotalPerMillion' ratio=0.5 %}
   </div>
   
-{% endblock graph %}
+{% endblock content %}

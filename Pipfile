@@ -18,6 +18,8 @@ dash-bootstrap-components = "*"
 django-bootstrap4 = "*"
 dpd-static-support = "*"
 whitenoise = "*"
+joblib = "*"
+scikit-learn = "*"
 
 [dev-packages]
 

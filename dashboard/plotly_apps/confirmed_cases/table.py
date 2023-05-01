@@ -118,6 +118,7 @@ def split_filter_part(filter_part):
     Input('table-paging-with-graph', "sort_by"),
     Input('table-paging-with-graph', "filter_query"))
 def update_table(selected_date, page_current, page_size, sort_by, filter):
+
     filtering_expressions = filter.split(' && ')
 
     dff = df[df['date'] == selected_date]
@@ -169,10 +170,11 @@ def update_graph(rows):
                         }
                     ],
                     "layout": {
+                        "title": " ".join(word.capitalize() for word in column.split("_")),
                         "xaxis": {"automargin": True},
                         "yaxis": {"automargin": True},
                         "height": 250,
-                        "margin": {"t": 10, "l": 10, "r": 10},
+                        "margin": {"t": 50, "l": 10, "r": 10},
                     },
                 },
             )

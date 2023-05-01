@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'config',
     'dashboard',
+    'detection',
     'channels',
     'channels_redis',
 ]

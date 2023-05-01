@@ -169,10 +169,11 @@ def update_graph(rows):
                         }
                     ],
                     "layout": {
+                        "title": " ".join(word.capitalize() for word in column.split("_")),
                         "xaxis": {"automargin": True},
                         "yaxis": {"automargin": True},
                         "height": 250,
-                        "margin": {"t": 10, "l": 10, "r": 10},
+                        "margin": {"t": 50, "l": 10, "r": 10},
                     },
                 },
             )
