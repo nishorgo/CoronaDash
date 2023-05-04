@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 
 from django import forms
 from .models import Questionnaire
-from django.forms.models import inlineformset_factory, BaseInlineFormSet
-from django.forms import modelformset_factory
+from django.forms.widgets import RadioSelect
 
 
 class CreateUserForm(UserCreationForm):
@@ -18,3 +17,10 @@ class QuestionnaireForm(forms.ModelForm):
         model = Questionnaire
         fields = '__all__'
         exclude = ['patient', 'date_time']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name in self.fields:
+            field = self.fields.get(field_name)
+            if isinstance(field, forms.BooleanField):
+                field.widget = RadioSelect(choices=((True, 'Yes'), (False, 'No')))

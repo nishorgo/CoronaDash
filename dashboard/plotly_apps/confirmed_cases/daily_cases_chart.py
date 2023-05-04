@@ -7,8 +7,10 @@ from dash.dependencies import Input, Output
 from .daily_cases_app import app, daily_case
 
 country_list = pd.read_csv('country_list.csv')
+# selecting only the country names
 country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
 
+# main chart layout
 chart_layout = html.Div([
     dcc.Graph(id='fig-chart', figure={}),
     

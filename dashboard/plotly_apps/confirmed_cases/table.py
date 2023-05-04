@@ -14,6 +14,8 @@ df = df[['location', 'new_cases', 'new_cases_per_million', 'total_cases', 'total
 PAGE_SIZE = 5
 
 
+# Main Table Layout: Implemented inside a Card
+
 app.layout = html.Div(children=
     [
         html.H1('Records of daily confirmed cases',),
@@ -74,7 +76,8 @@ app.layout = html.Div(children=
     ]
 )
 
-    
+
+# Operators for filtering 
 
 operators = [['ge ', '>='],
              ['le ', '<='],
@@ -85,16 +88,21 @@ operators = [['ge ', '>='],
              ['contains '],
              ['datestartswith ']]
 
+# Function for splitting various filter parts to get the column name, operator and value
 
 def split_filter_part(filter_part):
     for operator_type in operators:
         for operator in operator_type:
             if operator in filter_part:
+                # splitting the name and value part on the operator
                 name_part, value_part = filter_part.split(operator, 1)
+                # name part is inside curly brackets
                 name = name_part[name_part.find('{') + 1: name_part.rfind('}')]
 
+                # removing spaces around the value part
                 value_part = value_part.strip()
                 v0 = value_part[0]
+                # checking if the value part is inside quotes and removing them
                 if (v0 == value_part[-1] and v0 in ("'", '"', '`')):
                     value = value_part[1: -1].replace('\\' + v0, v0)
                 else:
@@ -109,6 +117,7 @@ def split_filter_part(filter_part):
 
     return [None] * 3
 
+# Callback Part where Inputs are function parameters and Output is the return value of the function
 
 @app.callback(
     Output('table-paging-with-graph', "data"),
@@ -118,12 +127,13 @@ def split_filter_part(filter_part):
     Input('table-paging-with-graph', "sort_by"),
     Input('table-paging-with-graph', "filter_query"))
 def update_table(selected_date, page_current, page_size, sort_by, filter):
-
+    # splitting filter string into a list of filtering conditions
     filtering_expressions = filter.split(' && ')
-
+    # filtering the data based on selected date
     dff = df[df['date'] == selected_date]
 
     for filter_part in filtering_expressions:
+        # splitting each filtering condition into column name, operator and value
         col_name, operator, filter_value = split_filter_part(filter_part)
 
         if operator in ('eq', 'ne', 'lt', 'le', 'gt', 'ge'):
@@ -132,13 +142,14 @@ def update_table(selected_date, page_current, page_size, sort_by, filter):
         elif operator == 'contains':
             dff = dff.loc[dff[col_name].str.contains(filter_value)]
         elif operator == 'datestartswith':
-            # this is a simplification of the front-end filtering logic,
-            # only works with complete fields in standard format
             dff = dff.loc[dff[col_name].str.startswith(filter_value)]
 
     if len(sort_by):
+        # sorting the data based on the columns selected
         dff = dff.sort_values(
+            # sorting by multiple columns
             [col['column_id'] for col in sort_by],
+            # checking if the sort_by value is in ascending order or not
             ascending=[
                 col['direction'] == 'asc'
                 for col in sort_by
@@ -146,6 +157,7 @@ def update_table(selected_date, page_current, page_size, sort_by, filter):
             inplace=False
         )
 
+    # dff is filtered by current page and page size
     return dff.iloc[
         page_current*page_size: (page_current + 1)*page_size
     ].to_dict('records')

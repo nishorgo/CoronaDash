@@ -74,14 +74,16 @@ def detect(request):
             questionnaire.patient = request.user
 
             model = joblib.load('detection/model.pkl')
-            questionnaire.covid = model.predict(questionnaire.breathing_problem, questionnaire.fever, questionnaire.dry_cough, 
+            patient_input = np.array([questionnaire.breathing_problem, questionnaire.fever, questionnaire.dry_cough, 
                                        questionnaire.sore_throat, questionnaire.runny_nose, questionnaire.asthma, 
                                        questionnaire.chronic_lung_disease, questionnaire.headache, questionnaire.heart_disease, 
                                        questionnaire.diabetes, questionnaire.hypertension, questionnaire.fatigue, 
                                        questionnaire.gastrointestinal, questionnaire.abroad_travel, questionnaire.contact_with_covid_patient, 
                                        questionnaire.attended_large_gathering, questionnaire.visited_public_exposed_places, 
                                        questionnaire.family_working_in_public_exposed_places, questionnaire.wearing_mask, 
-                                       questionnaire.sanitization_from_market)
+                                       questionnaire.sanitization_from_market])
+            patient_input = patient_input.reshape(1, -1)
+            questionnaire.covid = model.predict(patient_input)[0]
             
             questionnaire.save()
             return render (request, 'detection/result.html', {'questionnaire': questionnaire})

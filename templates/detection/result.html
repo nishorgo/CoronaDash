@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            {% if questionnaire.covid == 0 %}
+                <h1 class="display-6 text-center">There's a little to no probability of you being infected to Covid-19</h1>
+            {% elif questionnaire.covid == 1 %}
+                <h1 class="display-6 text-center">There's a high risk of you being infected to Covid-19. Contact the local hospital or doctor ASAP.</h1>
+            {% endif %}
+        </div>
+    </div>
+    
+
+{% endblock content %}

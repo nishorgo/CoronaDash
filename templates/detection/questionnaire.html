@@ -1,10 +1,333 @@
 {% extends '_base.html' %}
 
 {% block content %}
-    <h2 class="mt-5 pt-5">Predict Species</h2>
-    <form method="post">
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-4 px-0 text-center"> Questions to measure the risk of you being infected to Covid-19</h1>
+        </div>
+    </div>
+    
+    <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Predict">
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Are you experiencing shortness of breath, chest tightness, wheezing, or difficulty breathing deeply?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.breathing_problem }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Are you currently experiencing a fever, characterized by a body temperature above 100.4°F (38°C), without any known cause or explanation?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.fever }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been experiencing a persistent dry cough, with no production of mucus or phlegm, for more than a few days?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.dry_cough }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been experiencing pain, discomfort, or a scratchy sensation in your throat, especially when swallowing, for more than a few days?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.sore_throat }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been experiencing a continuous or intermittent discharge of mucus or watery fluid from your nose, with or without congestion or sneezing?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.runny_nose }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you ever been diagnosed with asthma, or have you experienced recurring episodes of shortness of breath, wheezing, chest tightness, or coughing that were triggered by exercise, allergies, respiratory infections, or other factors?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.asthma }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been diagnosed with any chronic lung diseases?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.chronic_lung_disease }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Are you currently experiencing any pain or discomfort in your head, ranging from mild to severe?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.headache }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been diagnosed with any heart diseases or do you experience symptoms such as chest pain or discomfort?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.heart_disease }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been diagnosed with Diabetes?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.diabetes }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been diagnosed with high blood pressure, or do you have a history of elevated blood pressure readings?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.hypertension }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Are you currently experiencing a persistent feeling of tiredness, weakness, or lack of energy that is not relieved by rest or sleep, and that may be accompanied by muscle pain?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.fatigue }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been experiencing any digestive symptoms such as abdominal pain or discomfort, nausea, vomiting, diarrhea, constipation, bloating, or excessive gas?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.gastrointestinal }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you traveled outside of the country within the past 14 days or had close contact with someone who has traveled internationally?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.abroad_travel }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you been in close contact with someone who has tested positive for COVID-19, or who has experienced symptoms such as fever, cough, or shortness of breath, within the past 14 days?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.contact_with_covid_patient }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Have you attended any large gatherings, such as parties, weddings, conferences, or concerts, with a significant number of people in close proximity, in the past two weeks?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.attended_large_gathering }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        In the past 14 days, have you visited any public places such as schools, workplaces, restaurants, gyms, or stores where you may have been in close contact with other people who were not wearing masks or following social distancing guidelines?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.visited_public_exposed_places }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Do you have any family members who work in public-facing roles such as healthcare, emergency services, public transportation, or retail, where they may be exposed to a higher risk of Covid-19?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.amily_working_in_public_exposed_places }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Do you consistently wear masks in public spaces?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.wearing_mask }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="d-flex justify-content-center mb-3">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="fs-2">
+                        Do you regularly sanitize or clean the items you bring back from the market, such as groceries or packages?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-check-lg fs-5">
+                        {{ form.sanitization_from_market }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 col-2 mx-auto mb-5">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
     </form>
 {% endblock %}

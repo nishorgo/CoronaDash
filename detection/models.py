@@ -30,4 +30,13 @@ class Questionnaire(models.Model):
 
     def __str__(self):
         return self.patient.username + ' ' + str(self.date_time)
+    
+
+    class SymptomGuideline(models.Model):
+        symptom = models.CharField(max_length=100)
+        medicines = models.TextField()
+        guideline = models.TextField()
+
+        def __str__(self):
+            return self.symptom
 

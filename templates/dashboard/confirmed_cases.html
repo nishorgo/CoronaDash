@@ -3,8 +3,11 @@
 {% load static %}
 
 {% block content %} 
-  <div>
-    <h1 class="display-2 my-5 py-4">Confirmed Cases Statistics of Covid-19</h1>
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Confirmed cases statistics of Covid-19</h1>
+        <p class="fs-5"> Due to limited testing, the number of confirmed cases is lower than the true number of infections.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='Cases' %}>
