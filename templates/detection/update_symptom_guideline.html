@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-4 px-0 text-center">Update '{{ symptom_name }}' Symptom Guidelines</h1>
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Symptom Guidelines</span>
+            {{ form.guideline }}
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">Advised Medicines</span>
+            {{ form.medicines }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    </form>
+
+
+{% endblock content %}

@@ -32,11 +32,20 @@ class Questionnaire(models.Model):
         return self.patient.username + ' ' + str(self.date_time)
     
 
-    class SymptomGuideline(models.Model):
-        symptom = models.CharField(max_length=100)
-        medicines = models.TextField()
-        guideline = models.TextField()
+class SymptomGuideline(models.Model):
+    symptom = models.CharField(max_length=100, primary_key=True)
+    display_name = models.CharField(max_length=100)
+    medicines = models.TextField()
+    guideline = models.TextField()
 
-        def __str__(self):
-            return self.symptom
+    @property
+    def generate_name(self):
+        return " ".join(word.capitalize() for word in self.symptom.split("_"))
+
+    def save(self, *args, **kwargs):
+        self.display_name = self.generate_name
+        super(SymptomGuideline, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.symptom
 

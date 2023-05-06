@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import CreateUserForm, QuestionnaireForm
+from .forms import CreateUserForm, QuestionnaireForm, UpdateSymptomGuidelineForm
+from .models import SymptomGuideline
 import numpy as np
 import pandas as pd
 import joblib
@@ -91,3 +92,20 @@ def detect(request):
     else:
         form = QuestionnaireForm()
         return render(request, 'detection/questionnaire.html', {'form': form})
+    
+
+def SymptomGuidelines(request):
+    symptoms = SymptomGuideline.objects.all()
+    return render(request, 'detection/symptom_guidelines.html', {'symptoms': symptoms})
+
+
+def UpdateSymptomGuideline(request, pk):
+    symptom_object = get_object_or_404(SymptomGuideline, pk=pk)
+    form = UpdateSymptomGuidelineForm(instance=symptom_object)
+    if request.method == 'POST':
+        form = UpdateSymptomGuidelineForm(request.POST, instance=symptom_object)
+        if form.is_valid():
+            form.save()
+            return redirect('symptom-guidelines')
+        
+    return render(request, 'detection/update_symptom_guideline.html', {'form': form, 'symptom_name':symptom_object.display_name})

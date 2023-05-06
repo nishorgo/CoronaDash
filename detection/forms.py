@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from django import forms
-from .models import Questionnaire
+from .models import Questionnaire, SymptomGuideline
 from django.forms.widgets import RadioSelect
 
 
@@ -24,3 +24,14 @@ class QuestionnaireForm(forms.ModelForm):
             field = self.fields.get(field_name)
             if isinstance(field, forms.BooleanField):
                 field.widget = RadioSelect(choices=((True, 'Yes'), (False, 'No')))
+
+
+class UpdateSymptomGuidelineForm(forms.ModelForm):
+    
+    class Meta:
+        model = SymptomGuideline
+        fields = ['medicines', 'guideline']
+        widgets = {
+            'medicines': forms.Textarea(attrs={'class': 'form-control'}),
+            'guideline': forms.Textarea(attrs={'class': 'form-control'})
+        }

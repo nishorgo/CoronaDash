@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-3 px-0 text-center">Symptom Guidelines</h1>
+        </div>
+    </div>
+
+    {% for symptom in symptoms %}
+        <div class="d-flex justify-content-center mb-5">
+            <div class="card border-dark mb-3" style="width: 75rem;">
+                <div class="card-header bg-light border-light">
+                    <h2 class="card-title float-start">
+                        {{ symptom.display_name }}
+                    </h2>
+                    <a href="{% url 'update-symptom-guidelines' symptom.pk %}" class="btn btn-primary float-end">Update</a>
+                </div>
+
+                <div class="card-body border-light">
+                    <h3 class="fs-4">Guidelines</h3>
+                    <p class="card-text"><p>{{ symptom.guideline }}</p></p>
+                </div>
+                <div class="card-body ">
+                    <h3 class="fs-4">Advised Medicines</h3>
+                    <p class="card-text"><p>{{ symptom.medicines }}</p></p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock content %}
