@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.template.loader import get_template
 from django.contrib import messages
+from django.http import HttpResponse
+
 from .forms import CreateUserForm, QuestionnaireForm, UpdateSymptomGuidelineForm
-from .models import SymptomGuideline
+from .models import SymptomGuideline, Questionnaire
+
+from xhtml2pdf import pisa
 import numpy as np
 import pandas as pd
 import joblib
@@ -67,6 +73,7 @@ def logoutUser(request):
     return redirect('login')
 
 
+@login_required(login_url='login')
 def detect(request):
     if request.method == 'POST':
         form = QuestionnaireForm(request.POST)
@@ -85,20 +92,24 @@ def detect(request):
                                        questionnaire.sanitization_from_market])
             patient_input = patient_input.reshape(1, -1)
             questionnaire.covid = model.predict(patient_input)[0]
+
+            guidelines = SymptomGuideline.objects.all()
             
             questionnaire.save()
-            return render (request, 'detection/result.html', {'questionnaire': questionnaire})
+            return render (request, 'detection/result.html', {'questionnaire': questionnaire, 'guidelines': guidelines})
         
     else:
         form = QuestionnaireForm()
         return render(request, 'detection/questionnaire.html', {'form': form})
     
 
+@staff_member_required(login_url='home')
 def SymptomGuidelines(request):
     symptoms = SymptomGuideline.objects.all()
     return render(request, 'detection/symptom_guidelines.html', {'symptoms': symptoms})
 
 
+@staff_member_required(login_url='home')
 def UpdateSymptomGuideline(request, pk):
     symptom_object = get_object_or_404(SymptomGuideline, pk=pk)
     form = UpdateSymptomGuidelineForm(instance=symptom_object)
@@ -109,3 +120,26 @@ def UpdateSymptomGuideline(request, pk):
             return redirect('symptom-guidelines')
         
     return render(request, 'detection/update_symptom_guideline.html', {'form': form, 'symptom_name':symptom_object.display_name})
+
+
+def report_render_pdf_view(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    report = get_object_or_404(Questionnaire, pk=pk)
+
+    guidelines = SymptomGuideline.objects.all()
+    template_path = 'detection/generate_pdf.html'
+    context = {'report': report, 'guidelines': guidelines}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+
+    response['Content-Disposition'] = 'filename="report.pdf"'
+
+    template = get_template(template_path)
+    html = template.render(context)
+
+    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    
+    return response

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% comment %} <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style> {% endcomment %}
+</head>
+<body>
+    <h1>REPORT OF COVID QUESTIONNAIRE</h1>
+
+    {% if report.covid %}
+        <h2>There's a high risk of you being infected to Covid-19. Contact the local hospital or doctor ASAP.</h2>
+    {% else %}
+        <h2>There's a little to no probability of you being infected to Covid-19.</h2>
+    {% endif %}
+
+
+
+    <table>
+        <tr>
+            <td>Breathing Problem</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>Fever</td>
+            <td>{% if report.fever %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Dry Cough</td>
+            <td>{% if report.dry_cough %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Sore Throat</td>
+            <td>{% if report.sore_throat %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Runny Nose</td>
+            <td>{% if report.runny_nose %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Asthma</td>
+            <td>{% if report.asthma %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Chronic Lung Disease</td>
+            <td>{% if report.chronic_lung_disease %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Headache</td>
+            <td>{% if report.headache %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Heart Disease</td>
+            <td>{% if report.heart_disease %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Diabetes</td>
+            <td>{% if report.diabetes %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Hypertension</td>
+            <td>{% if report.hypertension %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Fatigue</td>
+            <td>{% if report.fatigue %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Gastrointestinal</td>
+            <td>{% if report.gastrointestinal %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Travelled Aborad</td>
+            <td>{% if report.abroad_travel %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Contacted Covid Patient</td>
+            <td>{% if report.contact_with_covid_patient %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Attended Large Gathering</td>
+            <td>{% if report.attended_large_gathering %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Visited Public Exposed Places</td>
+            <td>{% if report.visited_public_exposed_places %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Family Working in Public Exposed Places</td>
+            <td>{% if report.family_working_in_public_exposed_places %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Wearing Mask</td>
+            <td>{% if report.wearing_mask %}Yes{% else %}No{% endif %}</td>
+        </tr>
+
+        <tr>
+            <td>Sanitization from Market</td>
+            <td>{% if report.sanitization_from_market %}Yes{% else %}No{% endif %}</td>
+        </tr>
+    </table>
+
+    <h1>INSTRUCTIONS</h1>
+
+    {% for guideline in guidelines %}
+    
+        {% if guideline.symptom == 'sore_throat' and report.sore_throat %}
+            
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        
+        {% elif guideline.symptom == 'runny_nose' and report.runny_nose %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'hypertension' and report.hypertension %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'headache' and report.headache %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'gastrointestinal' and report.gastrointestinal %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'fever' and report.fever %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'fatigue' and report.fatigue %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'dry_cough' and report.dry_cough %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'diabetes' and report.diabetes %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'breathing_problem' and report.breathing_problem %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+
+        {% elif guideline.symptom == 'asthma' and report.asthma %}
+        
+            <div class="">
+                <h1> {{ guideline.display_name }} </h1>
+            </div>
+
+            <div class="">
+                <h3>Guidelines</h3>
+                <p><p>{{ guideline.guideline }}</p></p>
+            </div>
+
+            <div class="">
+                <h3>Medicines</h3>
+                <p><p>{{ guideline.medicines }}</p></p>
+            </div>
+        
+        {% endif %}
+    
+    {% endfor %}
+</body>
+</html>

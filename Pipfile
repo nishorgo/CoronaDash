@@ -20,6 +20,7 @@ dpd-static-support = "*"
 whitenoise = "*"
 joblib = "*"
 scikit-learn = "*"
+xhtml2pdf = "*"
 
 [dev-packages]
 

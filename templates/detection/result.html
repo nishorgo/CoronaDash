@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div class="my-5 py-4">
+    <div class="mt-5 mb-3 pt-4">
         <div class="card border-light" style="background:#fff023;">
             {% if questionnaire.covid == 0 %}
                 <h1 class="display-6 text-center">There's a little to no probability of you being infected to Covid-19</h1>
@@ -11,6 +11,240 @@
             {% endif %}
         </div>
     </div>
+
+    <a class = "mb-3" href="{% url 'report_pdf_view' questionnaire.id %}" target="_blank"><button class="btn btn-primary">Report</button></a>
+
+    <div class="my-3 card border-light">
+        <h2 class='fs-2 text-left' >
+            Some guidelines for your symptoms are given below. But in all of the cases, take doctor's advice and strictly maintain Covid-19 protocols.
+        </h2>
+    </div>
+
+    {% for guideline in guidelines %}
+
+        {% if guideline.symptom == 'sore_throat' and questionnaire.sore_throat %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+        {% elif guideline.symptom == 'runny_nose' and questionnaire.runny_nose %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'hypertension' and questionnaire.hypertension %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'headache' and questionnaire.headache %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'gastrointestinal' and questionnaire.gastrointestinal %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'fever' and questionnaire.fever %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'fatigue' and questionnaire.fatigue %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'dry_cough' and questionnaire.dry_cough %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'diabetes' and questionnaire.diabetes %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'breathing_problem' and questionnaire.breathing_problem %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+            {% elif guideline.symptom == 'asthma' and questionnaire.asthma %}
+            <div class="d-flex justify-content-center mb-5">
+                <div class="card border-dark mb-3" style="width: 75rem;">
+                    <div class="card-header bg-light border-light">
+                        <h2 class="card-title">
+                            {{ guideline.display_name }}
+                        </h2>
+                    </div>
+
+                    <div class="card-body border-light">
+                        <h3 class="fs-4">Guidelines</h3>
+                        <p class="card-text"><p>{{ guideline.guideline }}</p></p>
+                    </div>
+                    <div class="card-body ">
+                        <h3 class="fs-4">Advised Medicines</h3>
+                        <p class="card-text"><p>{{ guideline.medicines }}</p></p>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    
+    {% endfor %}
     
 
 {% endblock content %}
