@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-4 px-0 text-center"> Reports of {{ current_username }}</h1>
+        </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for report in current_user_reports %}
+            <li class="list-group-item float-start">{{ report.date_time }}
+                <a href="{% url 'report_pdf_view' report.pk %}" class="btn btn-primary btn-sm  float-end">Report</a>
+            </li>
+            
+        {% endfor %}
+    </ul>
+
+
+    
+{% endblock content %}

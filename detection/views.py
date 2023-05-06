@@ -128,8 +128,8 @@ def report_render_pdf_view(request, *args, **kwargs):
 
     guidelines = SymptomGuideline.objects.all()
     template_path = 'detection/generate_pdf.html'
-    context = {'report': report, 'guidelines': guidelines}
-    # Create a Django response object, and specify content_type as pdf
+    context = {'report':report, 'guidelines':guidelines}
+
     response = HttpResponse(content_type='application/pdf')
 
     response['Content-Disposition'] = 'filename="report.pdf"'
@@ -143,3 +143,10 @@ def report_render_pdf_view(request, *args, **kwargs):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     
     return response
+
+
+def UserReportListView(request):
+    current_username = request.user.username
+    current_user_id = request.user.id
+    current_user_reports = Questionnaire.objects.filter(patient=current_user_id).order_by('-date_time')
+    return render(request, 'detection/reports.html', {'current_user_reports':current_user_reports, 'current_username':current_username})
