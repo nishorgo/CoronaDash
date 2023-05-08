@@ -5,29 +5,63 @@
 {% block content %} 
   <div class="my-5 py-4">
     <div class="card border-light" style="background:#fff023;">
-        <h1 class="display-4 px-0 text-center"> Confirmed cases statistics of Covid-19</h1>
-        <p class="fs-5"> Due to limited testing, the number of confirmed cases is lower than the true number of infections.</p>
+        <h1 class="display-4 px-0 text-center"> Confirmed cases statistics of COVID-19</h1>
+        <p class="fs-4 text-center"> Due to limited testing, the number of confirmed cases is lower than the true number of infections.</p>
     </div>
   </div>
 
   <div class = {% plotly_class name='Cases' %}>
-    {%plotly_app name='Cases' ratio=1.5%}
+    {%plotly_app name='Cases' ratio=1.2%}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> What is the daily number of confirmed cases? </h1>
+        <p class="fs-4 text-center"> The reported case figures on a given date do not necessarily show the number of new cases on that day, this is due to delays in reporting. 
+          The actual number of cases is likely to be much higher than the number of confirmed cases, this is due to limited testing.
+        </p>
+    </div>
   </div>
   
   <div class = {% plotly_class name='DailyCases' %} >
-    {% plotly_app name='DailyCases' ratio=0.5 %}
+    {% plotly_app name='DailyCases' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Daily confirmed cases per million people</h1>
+        <p class="fs-4 text-center"> Differences in the population size between different countries are often large, it is insightful to compare the number of confirmed cases per million people. 
+          Keep in mind that in countries that do very little testing the actual number of cases can be much higher than the number of confirmed cases shown here.
+        </p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='DailyPerMillion' %}>
-    {% plotly_app name='DailyPerMillion' ratio=0.5 %}
+    {% plotly_app name='DailyPerMillion' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> What is the cumulative number of confirmed cases?</h1>
+        <p class="fs-4 text-center"> The previous charts looked at the number of confirmed cases per day, this chart shows the cumulative number of confirmed cases since the beginning of the COVID-19 pandemic.
+        </p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='TotalCases' %}>
-    {% plotly_app name='TotalCases' ratio=0.5 %}
+    {% plotly_app name='TotalCases' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center">Cumulative confirmed cases per million people</h1>
+        <p class="fs-4 text-center"> Cumulative confirmed cases per million people.
+        </p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='TotalPerMillion' %}>
-    {% plotly_app name='TotalPerMillion' ratio=0.5 %}
+    {% plotly_app name='TotalPerMillion' ratio=0.4 %}
   </div>
   
 {% endblock content %}

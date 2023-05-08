@@ -3,32 +3,71 @@
 {% load static %}
 
 {% block content %} 
-  <div>
-    <h1 class="display-2 my-5 py-3">Statistics of Hospital and ICU Admissions</h1>
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Hopitalized and ICU patients statistics due to COVID-19 </h1>
+    </div>
   </div>
 
   <div class = {% plotly_class name='Hospitalizations' %} style="width: 100%;">
     {%plotly_app name='Hospitalizations' ratio=1.5%}
   </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people are in hospital due to COVID-19 at a given time? </h1>
+    </div>
+  </div>
   
   <div class = {% plotly_class name='HospPatients' %} >
     {% plotly_app name='HospPatients' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Hopitalized due to COVID-19 people per million </h1>
+    </div>
   </div>
  
   <div class = {% plotly_class name='HospPatientsPerMillion' %}>
     {% plotly_app name='HospPatientsPerMillion' ratio=0.4 %}
   </div>
 
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> What is the weekly number of new hospitalizations due to COVID-19? </h1>
+    </div>
+  </div>
+
   <div class = {% plotly_class name='WeeklyHospAdmissions' %}>
     {% plotly_app name='WeeklyHospAdmissions' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people are in ICU due to COVID-19 at a given time? </h1>
+    </div>
   </div>
 
   <div class = {% plotly_class name='ICUPatients' %}>
     {% plotly_app name='ICUPatients' ratio=0.4 %}
   </div>
 
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Admitted in ICU due to COVID-19 people per million? </h1>
+    </div>
+  </div>
+
   <div class = {% plotly_class name='ICUPatientsPerMillion' %}>
     {% plotly_app name='ICUPatientsPerMillion' ratio=0.4 %}
+  </div>
+  
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> What is the weekly number of new ICU admissions due to COVID-19? </h1>
+    </div>
   </div>
 
   <div class = {% plotly_class name='WeeklyICUAdmissions' %}>

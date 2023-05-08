@@ -16,7 +16,6 @@ PAGE_SIZE = 5
 
 app.layout = html.Div(children=
     [
-        html.H1('Records of daily confirmed deaths',),
         html.Div(className='d-flex justify-content-center', children=
             [   
                 dbc.Card(
@@ -165,7 +164,7 @@ def update_graph(rows):
                             "x": dff["location"],
                             "y": dff[column] if column in dff else [],
                             "type": "bar",
-                            "marker": {"color": "#02e7d4"},
+                            "marker": {"color": "#fff023"},
                         }
                     ],
                     "layout": {

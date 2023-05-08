@@ -28,7 +28,7 @@ app.layout = html.Div(className='w-75 mb-3', children=
         dbc.Card(
             dbc.CardBody(
                 [
-                    html.H1('Cumulative Deaths Per Million', style={'textAlign': 'left'}),
+                    html.H1('Cumulative confirmed COVID-19 deaths per million people', style={'textAlign': 'left'}),
                     app_tabs,
                     html.Div(id='tab-content', children=[]),
                 ]

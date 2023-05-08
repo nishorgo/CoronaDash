@@ -3,32 +3,75 @@
 {% load static %}
 
 {% block content %} 
-  <div>
-    <h1 class="display-2 my-5 py-3">Statistics of Tests Performed</h1>
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Performed test statistics of COVID-19</h1>
+        <p class="fs-4 text-center"> The number of tests does not refer to the same in each country, one difference is that some countries report the number of people tested, while others report the number of tests performed (which can be higher if the same person is tested more than once). And other countries report their testing data in a way that leaves it unclear what the test count refers to exactly.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='Tests' %} style="width: 100%;">
     {%plotly_app name='Tests' ratio=1.5%}
   </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many tests are performed each day?</h1>
+    </div>
+  </div>
   
   <div class = {% plotly_class name='DailyTests' %} >
     {% plotly_app name='DailyTests' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Tests performed each day per thousand people </h1>
+    </div>
   </div>
  
   <div class = {% plotly_class name='DailyTestsPerThousand' %}>
     {% plotly_app name='DailyTestsPerThousand' ratio=0.4 %}
   </div>
 
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Total tests performed pf COVID-19 </h1>
+    </div>
+  </div>
+
   <div class = {% plotly_class name='TotalTests' %}>
     {% plotly_app name='TotalTests' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Total tests performed relative to the size of population </h1>
+        <p class="fs-4 text-center"> This chart shows you how the total number of tests per thousand people compares across all countries in our dataset.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='TotalTestsPerThousand' %}>
     {% plotly_app name='TotalTestsPerThousand' ratio=0.4 %}
   </div>
 
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> The positive rate </h1>
+        <p class="fs-4 text-center"> The positive rate can be a good metric for how adequately countries are testing because it can indicate the level of testing relative to the size of the outbreak. To be able to properly monitor and control the spread of the virus, countries with more widespread outbreaks need to do more testing.</p>
+    </div>
+  </div>
+
   <div class = {% plotly_class name='PositiveRate' %}>
     {% plotly_app name='PositiveRate' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Tests per confirmed case </h1>
+        <p class="fs-4 text-center"> Another way of looking at the extent of testing relative to the scale of the outbreak is to ask: How many tests does a country do to find one COVID-19 case?
+          It is simply the inverse of our data on the positive rate.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='TestsPerCase' %}>

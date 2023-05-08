@@ -5,5 +5,5 @@ import pandas as pd
 
 app = DjangoDash('PositiveRate', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-positive_rate = df[['iso_code', 'continent', 'date', 'location', 'positive_rate']].copy()
+
+positive_rate = pd.read_csv('dataset/positive_rate.csv')

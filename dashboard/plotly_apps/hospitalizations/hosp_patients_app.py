@@ -5,5 +5,5 @@ import pandas as pd
 
 app = DjangoDash('HospPatients', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-hosp_patients = df[['iso_code', 'continent', 'date', 'location', 'hosp_patients']].copy()
+
+hosp_patients = pd.read_csv('dataset/hosp_patients.csv')

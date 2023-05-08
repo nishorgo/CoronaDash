@@ -5,5 +5,5 @@ import pandas as pd
 
 app = DjangoDash('DailyPerMillion', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-daily_per_million = df[['iso_code', 'continent', 'date', 'location', 'new_cases_per_million', 'new_cases_smoothed_per_million']].copy()
+
+daily_per_million = pd.read_csv('dataset/daily_per_million.csv')

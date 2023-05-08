@@ -5,5 +5,5 @@ import pandas as pd
 
 app = DjangoDash('TotalTestsPerThousand', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-total_tests_per_thousand = df[['iso_code', 'continent', 'date', 'location', 'total_tests_per_thousand']].copy()
+
+total_tests_per_thousand = pd.read_csv('dataset/total_tests_per_thousand.csv')

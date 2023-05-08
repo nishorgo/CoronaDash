@@ -5,5 +5,5 @@ import pandas as pd
 
 app = DjangoDash('PeopleFullyVaccinated', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-people_fully_vaccinated = df[['iso_code', 'continent', 'date', 'location', 'people_fully_vaccinated']].copy()
+
+people_fully_vaccinated = pd.read_csv('dataset/people_fully_vaccinated.csv')

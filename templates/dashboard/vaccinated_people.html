@@ -3,32 +3,71 @@
 {% load static %}
 
 {% block content %} 
-  <div>
-    <h1 class="display-2 my-5 py-3">Statistics of Vaccinated People</h1>
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> COVID-19 vaccinated people statistics  </h1>
+        <p class="fs-4 text-center"> This vaccination dataset uses the most recent official numbers from governments and health ministries worldwide.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='VaccinatedPeople' %} >
     {%plotly_app name='VaccinatedPeople' ratio=1.5%}
   </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people have been vaccinated daily? </h1>
+    </div>
+  </div>
   
   <div class = {% plotly_class name='DailyPeopleVaccinated' %} >
     {% plotly_app name='DailyPeopleVaccinated' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people have been vaccinated daily per hundred? </h1>
+    </div>
   </div>
  
   <div class = {% plotly_class name='DailyPeopleVaccinatedPerHundred' %}>
     {% plotly_app name='DailyPeopleVaccinatedPerHundred' ratio=0.4 %}
   </div>
 
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people in total have been vaccinated? </h1>
+    </div>
+  </div>
+
   <div class = {% plotly_class name='PeopleVaccinated' %}>
     {% plotly_app name='PeopleVaccinated' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people in total have been vaccinated per hundred? </h1>
+    </div>
   </div>
 
   <div class = {% plotly_class name='PeopleVaccinatedPerHundred' %}>
     {% plotly_app name='PeopleVaccinatedPerHundred' ratio=0.4 %}
   </div>
 
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people have been vaccinated completely? </h1>
+    </div>
+  </div>
+
   <div class = {% plotly_class name='PeopleFullyVaccinated' %}>
     {% plotly_app name='PeopleFullyVaccinated' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> How many people have been vaccinated completely per hundred? </h1>
+    </div>
   </div>
 
   <div class = {% plotly_class name='PeopleFullyVaccinatedPerHundred' %}>

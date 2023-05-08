@@ -5,5 +5,4 @@ import pandas as pd
 
 app = DjangoDash('DailyCases', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-daily_case = df[['iso_code', 'continent', 'date', 'location', 'new_cases', 'new_cases_smoothed']].copy()
+daily_case = pd.read_csv('dataset/daily_case.csv')

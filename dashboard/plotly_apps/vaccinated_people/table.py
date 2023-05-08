@@ -165,7 +165,7 @@ def update_graph(rows):
                             "x": dff["location"],
                             "y": dff[column] if column in dff else [],
                             "type": "bar",
-                            "marker": {"color": "#02e7d4"},
+                            "marker": {"color": "#fff023"},
                         }
                     ],
                     "layout": {

@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-4 px-0 text-center"> Delete Report </h1>
+        </div>
+    </div>
+
+    <div class="my-5 py-4">
+        <div class="card border-light">
+            <h1 class="display-4 px-0 text-center"> Are you sure you want to delete this? </h1>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <form  method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="mx-2 btn btn-danger btn-lg">
+            <a href="{% url 'reports-all' %}" class="mx-2 btn btn-secondary btn-lg">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

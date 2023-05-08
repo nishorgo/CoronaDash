@@ -1,0 +1,44 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-4 px-0 text-center"> Admin Tasks</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="mb-5 row">
+            <div class="col-sm-6 d-flex justify-content-center">
+                <a href="{% url 'symptom-guidelines' %}" class="btn btn-primary btn-lg">Update Patient Guidelines</a>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-center">
+                <a href="{% url 'update-dashboard-data' %}" class="btn btn-primary btn-lg">Update Dashboard Dataset</a>
+            </div>
+        </div>
+
+    <div class="my-5 py-4">
+        <div class="card border-light" style="background:#fff023;">
+            <h1 class="display-4 px-0 text-center">Reports of All Users</h1>
+        </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for report in reports %}
+            <li class="list-group-item float-start">
+                <div class="row">
+                    <div class="col-sm-4 d-flex justify-content-center">{{ report.date_time }}</div>
+                    <div class="col-sm-4 d-flex justify-content-center">{{ report.patient.username }}</div>
+                    <div class="col-sm-4 d-flex justify-content-center">
+                        <a href="{% url 'report_pdf_view' report.pk %}" class="btn btn-primary btn-sm">Report Download</a>
+                        <a href="{% url 'report-admin-delete' report.pk %}" class="mx-3 btn btn-danger btn-sm float-end">Delete</a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    
+{% endblock content %}

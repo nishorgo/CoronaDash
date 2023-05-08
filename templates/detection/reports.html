@@ -11,7 +11,9 @@
     <ul class="list-group list-group-flush">
         {% for report in current_user_reports %}
             <li class="list-group-item float-start">{{ report.date_time }}
-                <a href="{% url 'report_pdf_view' report.pk %}" class="btn btn-primary btn-sm  float-end">Report</a>
+                <a href="{% url 'report-delete' report.pk %}" class="mx-3 btn btn-danger btn-sm float-end">Delete</a>
+                <a href="{% url 'report_pdf_view' report.pk %}" class="btn btn-primary btn-sm float-end">Report Download</a>
+                
             </li>
             
         {% endfor %}

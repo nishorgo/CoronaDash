@@ -8,22 +8,21 @@ from django.http import HttpResponse
 
 from .forms import CreateUserForm, QuestionnaireForm, UpdateSymptomGuidelineForm
 from .models import SymptomGuideline, Questionnaire
+from .utils import SeparateDataframes, FindHomePageData
 
 from xhtml2pdf import pisa
 import numpy as np
 import pandas as pd
 import joblib
+import requests
+import os
 
 
 def homePage(request):
-    df = pd.read_csv('owid-covid-data.csv')
-    country = 'World'
-    most_recent_date = df.loc[df['location'] == country, 'date'].max()
-    row = df.loc[(df['location'] == country) & (df['date'] == most_recent_date)]
-    cases = row.loc[:, 'total_cases'].values[0]
-    deaths = row.loc[:, 'total_deaths'].values[0]
-    vaccinations = row.loc[:, 'people_vaccinated'].values[0]
+    data_tuple = joblib.load('dataset/total_numbers.joblib')
+    cases, deaths, vaccinations = data_tuple
     context = {'cases': int(cases), 'deaths': int(deaths), 'vaccinations': int(vaccinations)}
+
     return render(request, 'detection/home.html', context)
 
 
@@ -73,6 +72,9 @@ def logoutUser(request):
     return redirect('login')
 
 
+
+
+
 @login_required(login_url='login')
 def detect(request):
     if request.method == 'POST':
@@ -101,27 +103,9 @@ def detect(request):
     else:
         form = QuestionnaireForm()
         return render(request, 'detection/questionnaire.html', {'form': form})
-    
-
-@staff_member_required(login_url='home')
-def SymptomGuidelines(request):
-    symptoms = SymptomGuideline.objects.all()
-    return render(request, 'detection/symptom_guidelines.html', {'symptoms': symptoms})
 
 
-@staff_member_required(login_url='home')
-def UpdateSymptomGuideline(request, pk):
-    symptom_object = get_object_or_404(SymptomGuideline, pk=pk)
-    form = UpdateSymptomGuidelineForm(instance=symptom_object)
-    if request.method == 'POST':
-        form = UpdateSymptomGuidelineForm(request.POST, instance=symptom_object)
-        if form.is_valid():
-            form.save()
-            return redirect('symptom-guidelines')
-        
-    return render(request, 'detection/update_symptom_guideline.html', {'form': form, 'symptom_name':symptom_object.display_name})
-
-
+@login_required(login_url='login')
 def report_render_pdf_view(request, *args, **kwargs):
     pk = kwargs.get('pk')
     report = get_object_or_404(Questionnaire, pk=pk)
@@ -145,8 +129,104 @@ def report_render_pdf_view(request, *args, **kwargs):
     return response
 
 
+@login_required(login_url='login')
 def UserReportListView(request):
     current_username = request.user.username
     current_user_id = request.user.id
     current_user_reports = Questionnaire.objects.filter(patient=current_user_id).order_by('-date_time')
     return render(request, 'detection/reports.html', {'current_user_reports':current_user_reports, 'current_username':current_username})
+
+
+@login_required(login_url='login')
+def UserReportDelete(request, pk):
+    report = get_object_or_404(Questionnaire, pk=pk)
+
+    if request.method == 'POST':
+        report.delete()
+        return redirect('reports')
+    
+    return render(request, 'detection/delete_report.html', {'report':report})
+
+
+
+
+
+@staff_member_required(login_url='home')
+def SymptomGuidelines(request):
+    symptoms = SymptomGuideline.objects.all()
+    return render(request, 'detection/symptom_guidelines.html', {'symptoms': symptoms})
+
+
+@staff_member_required(login_url='home')
+def UpdateSymptomGuideline(request, pk):
+    symptom_object = get_object_or_404(SymptomGuideline, pk=pk)
+    form = UpdateSymptomGuidelineForm(instance=symptom_object)
+    if request.method == 'POST':
+        form = UpdateSymptomGuidelineForm(request.POST, instance=symptom_object)
+        if form.is_valid():
+            form.save()
+            return redirect('symptom-guidelines')
+        
+    return render(request, 'detection/update_symptom_guideline.html', {'form': form, 'symptom_name':symptom_object.display_name})
+
+
+@staff_member_required(login_url='home')
+def AdminReportListView(request):
+    reports = Questionnaire.objects.all().order_by('-date_time')
+    return render(request, 'detection/reports_all.html', {'reports':reports})
+
+
+@staff_member_required(login_url='home')
+def AdminReportDelete(request, pk):
+    report = get_object_or_404(Questionnaire, pk=pk)
+
+    if request.method == 'POST':
+        report.delete()
+        return redirect('reports-all')
+    
+    return render(request, 'detection/admin_delete_report.html', {'report':report})
+
+
+@staff_member_required(login_url='home')
+def UpdateDashboardData(request):
+    # URL of the raw CSV file on GitHub
+    url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
+    folder_name = "dataset"
+    file_name = "owid-covid-data.csv"
+
+    # Create a folder named "dataset" if it doesn't exist
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
+    # Set the file path to "dataset/filename.csv"
+    file_path = os.path.join(folder_name, file_name)
+
+    # Send a GET request to the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Write the contents of the response to the file
+        with open(file_path, "wb") as f:
+            f.write(response.content)
+            download_success = True
+    else:
+        download_success = False
+        return render(request, 'detection/update_dashboard_data.html', {'download_success':download_success})
+
+    print('Download Success: ', download_success)
+
+    separate_dataframe_instances = False
+
+    print('Separate Dataframe Instances: Start')
+
+    FindHomePageData()
+    print('Find Home Page Data Done')
+    SeparateDataframes()
+
+    separate_dataframe_instances = True
+    print('Separate Dataframe Instances: ', separate_dataframe_instances)
+    context = {'download_success':download_success, 'separate_dataframe_instances':separate_dataframe_instances}
+
+
+    return render(request, 'detection/update_dashboard_data.html', context)

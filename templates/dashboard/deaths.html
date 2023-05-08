@@ -3,28 +3,63 @@
 {% load static %}
 
 {% block content %} 
-  <div>
-    <h1 class="display-2 my-5 py-4">Confirmed Deaths Statistics of Covid-19</h1>
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Confirmed death report statistics of COVID-19</h1>
+        <p class="fs-4 text-center"> Due to varying protocols and challenges in the attribution of the cause of death, the
+          number of confirmed deaths may not accurately represent the true number of deaths caused by COVID-19.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='Deaths' %}>
-    {%plotly_app name='Deaths' ratio=1.5%}
+    {%plotly_app name='Deaths' ratio=1.2%}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> What is the daily number of confirmed deaths?</h1>
+        <p class="fs-4 text-center"> The actual death toll from COVID-19 is likely to be higher than the number of confirmed deaths, this is due to limited testing and problems in the attribution of the cause of death. The difference between reported confirmed deaths and actual deaths varies by country.
+          How COVID-19 deaths are recorded may differ between countries (e.g., some countries may only count hospital deaths, whilst others also include deaths in homes).
+          The death figures on a given date do not necessarily show the number of new deaths on that day, but the deaths reported on that day. Since reporting can vary significantly from day to day, irrespectively of any actual variation of deaths</p>
+    </div>
   </div>
   
   <div class = {% plotly_class name='DailyDeaths' %} >
-    {% plotly_app name='DailyDeaths' ratio=0.5 %}
+    {% plotly_app name='DailyDeaths' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> Daily confirmed deaths per million people</h1>
+        <p class="fs-4 text-center"> Differences in the population size between countries are often large, and the COVID-19 death count in more populous countries tends to be higher. Because of this it can be insightful to know how the number of confirmed deaths in a country compares to the number of people who live there, especially when comparing across countries.
+          For instance, if 1,000 people died in Iceland, out of a population of about 340,000, that would have a far bigger impact than the same number dying in the United States, with its population of 331 million.1 This difference in impact is clear when comparing deaths per million people of each country’s population, in this example it would be roughly 3 deaths/million people in the US compared to a staggering 2,941 deaths/million people in Iceland.</p>
+    </div>
   </div>
  
   <div class = {% plotly_class name='DailyDeathsPerMillion' %}>
-    {% plotly_app name='DailyDeathsPerMillion' ratio=0.5 %}
+    {% plotly_app name='DailyDeathsPerMillion' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center"> What is the cumulative number of confirmed deaths?</h1>
+        <p class="fs-4 text-center"> The previous charts looked at the number of confirmed deaths per day, this chart shows the cumulative number of confirmed deaths since the beginning of the COVID-19 pandemic.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='TotalDeaths' %}>
-    {% plotly_app name='TotalDeaths' ratio=0.5 %}
+    {% plotly_app name='TotalDeaths' ratio=0.4 %}
+  </div>
+
+  <div class="my-5 py-4">
+    <div class="card border-light" style="background:#fff023;">
+        <h1 class="display-4 px-0 text-center">Cumulative confirmed deaths per million people</h1>
+        <p class="fs-4 text-center"> This chart shows the cumulative number of confirmed deaths per million people.</p>
+    </div>
   </div>
 
   <div class = {% plotly_class name='TotalDeathsPerMillion' %}>
-    {% plotly_app name='TotalDeathsPerMillion' ratio=0.5 %}
+    {% plotly_app name='TotalDeathsPerMillion' ratio=0.4 %}
   </div>
   
 {% endblock content %}
