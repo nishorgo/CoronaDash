@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if download_success %}
-        <h1>Downloaded Successfully</h1>
-    {% else %}
-        <h1>Downloading Failed</h1>
-        {% endif %}
-        
-        {% if dataset_instances %}
-        <h1>Dataset Instances Created Successfully</h1>
-        {% else %}
-        <h1>Dataset Instances Creation Failed</h1>
-    {% endif %}
-</body>
-</html>
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="my-5 py-4">
+        <div class="mb-5 card border-light" style="background:#fff023;">
+            {% if download_success %}
+                <h1 class="display-4 px-0 text-center">The Dashboard datasets have been updated successfully.</h1>
+            {% else %}
+                <h1 class="display-4 px-0 text-center">Downloading Failed!</h1>
+            {% endif %}
+        </div>
+
+        <div class="d-grid gap-2 col-2 mx-auto mb-5">
+            <a href="{% url 'reports-all' %}" class="btn btn-primary btn-lg">Go Back</a>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -6,8 +6,8 @@ from dash.dependencies import Input, Output
 
 from .daily_people_vaccinated_app import app, daily_people_vaccinated
 
-country_list = pd.read_csv('country_list.csv')
-country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
+
+country_options = [{'label': i, 'value': i,} for i in daily_people_vaccinated['location'].unique()]
 
 chart_layout = html.Div([
     dcc.Graph(id='fig-chart', figure={}),

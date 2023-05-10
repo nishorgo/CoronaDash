@@ -7,8 +7,17 @@ from datetime import date
 
 app = DjangoDash('Deaths', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-df = pd.read_csv('owid-covid-data.csv')
-df = df[['location', 'new_deaths', 'new_deaths_per_million', 'total_deaths', 'total_deaths_per_million', 'date']].copy()
+df = pd.read_csv('dataset/cases_table.csv')
+df['date'] = pd.to_datetime(df['date']) 
+max_date = df['date'].max()
+max_date = max_date.to_pydatetime()
+max_date = max_date.date()
+
+min_date = df['date'].min()
+min_date = min_date.to_pydatetime()
+min_date = min_date.date()
+
+df = pd.read_csv('dataset/deaths_table.csv')
 
 
 PAGE_SIZE = 5
@@ -23,8 +32,8 @@ app.layout = html.Div(children=
                         dbc.CardBody(
                             dcc.DatePickerSingle(
                                 id='date-picker',
-                                min_date_allowed=date(2020, 1, 1),
-                                max_date_allowed=date(2023, 3, 1),
+                                min_date_allowed=min_date,
+                                max_date_allowed=max_date,
                                 initial_visible_month=date(2021, 1, 1),
                                 month_format='MMM D, YYYY',
                                 display_format='MMM D, YYYY',

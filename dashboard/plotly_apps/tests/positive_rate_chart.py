@@ -6,8 +6,8 @@ from dash.dependencies import Input, Output
 
 from .positive_rate_app import app, positive_rate
 
-country_list = pd.read_csv('country_list.csv')
-country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
+
+country_options = [{'label': i, 'value': i,} for i in positive_rate['location'].unique()]
 
 chart_layout = html.Div([
     dcc.Graph(id='fig-chart', figure={}),

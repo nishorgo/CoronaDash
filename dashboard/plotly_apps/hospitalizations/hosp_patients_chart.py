@@ -6,8 +6,8 @@ from dash.dependencies import Input, Output
 
 from .hosp_patients_app import app, hosp_patients
 
-country_list = pd.read_csv('country_list.csv')
-country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
+
+country_options = [{'label': i, 'value': i,} for i in hosp_patients['location'].unique()]
 
 chart_layout = html.Div([
     dcc.Graph(id='fig-chart', figure={}),

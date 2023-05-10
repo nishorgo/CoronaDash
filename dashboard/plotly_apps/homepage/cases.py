@@ -9,8 +9,8 @@ from .layout_app import app, daily_cases
 
 import pandas as pd
 
-country_list = pd.read_csv('country_list.csv')
-country_options = [{'label': i, 'value': i,} for i in country_list['Country']]
+
+country_options = [{'label': i, 'value': i,} for i in daily_cases['location'].unique()]
 
 cases_layout = html.Div([
     dcc.Graph(id='fig-cases', figure={}),
